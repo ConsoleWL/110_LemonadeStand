@@ -25,6 +25,15 @@ namespace LemonadeStand
 
         // member methods (CAN DO)
 
+        public void DisplayInvetory()
+        {
+            Console.WriteLine($"You have {wallet.Money}");
+            Console.WriteLine($"You have {inventory.lemons.Count}");
+            Console.WriteLine($"You have {inventory.sugarCubes.Count}");
+            Console.WriteLine($"You have {inventory.iceCubes.Count}");
+            Console.WriteLine($"You have {inventory.cups.Count}");
+        }
+
         public void ChangeRecipe()
         {
             Console.WriteLine("Enter number of Lemons:");
