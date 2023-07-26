@@ -46,6 +46,8 @@ namespace LemonadeStand
                 numberOfSugarCubes = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter number of Ice Cubes:");
                 numberOfIceCubes = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter a price:");
+                price = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("\nSuccessfuly saved");
                 DisplayRecipe();

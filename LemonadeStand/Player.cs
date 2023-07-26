@@ -44,9 +44,9 @@ namespace LemonadeStand
             int sugarForPitcher = recipe.numberOfSugarCubes * 8;
             int iceForPitcher = recipe.numberOfIceCubes * 8;
 
-            inventory.lemons.RemoveRange(inventory.lemons.Count -1, lemonsForPitcher);
-            inventory.sugarCubes.RemoveRange(inventory.sugarCubes.Count -1, sugarForPitcher);
-            inventory.iceCubes.RemoveRange(inventory.sugarCubes.Count - 1, iceForPitcher);  
+            inventory.lemons.RemoveRange(0, lemonsForPitcher);
+            inventory.sugarCubes.RemoveRange(0, sugarForPitcher);
+            inventory.iceCubes.RemoveRange(0, iceForPitcher);  
         }
   
     }
