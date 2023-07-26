@@ -14,6 +14,7 @@ namespace LemonadeStand
         public Day()
         {
             weather = new Weather();
+            customers = new List<Customer>();
             customers.Add(new Customer());
             customers.Add(new Customer());
             customers.Add(new Customer());

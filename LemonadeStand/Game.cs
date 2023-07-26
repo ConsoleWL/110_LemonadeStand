@@ -17,9 +17,10 @@ namespace LemonadeStand
 
         public Game()
         {
+            currentDay = 1;
             player = new Player();
             store = new Store();
-
+            days = new List<Day>();
             days.Add(new Day());
             days.Add(new Day());
             days.Add(new Day());
@@ -43,6 +44,20 @@ namespace LemonadeStand
         {
             Console.WriteLine($"\nDay {currentDay} begins!");
 
+            player.DisplayInvetory();
+
+            store.SellLemons(player);
+            store.SellSugarCubes(player);
+            store.SellIceCubes(player);
+            store.SellCups(player);
+
+            player.recipe.DisplayRecipe();
+            player.recipe.ChangeRecipe();
+
+            days[currentDay].weather.DisplayTemperature();
+
+            player.recipe.price = UserInterface.GetNumberOfPitchers();
+            
         }
 
         public void GameRuslts()
@@ -50,9 +65,9 @@ namespace LemonadeStand
 
         }
 
-        void RunGame()
+        public void RunGame()
         {
-
+            GameSimulation();
         }
 
     }

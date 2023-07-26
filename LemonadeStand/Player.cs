@@ -8,7 +8,8 @@ namespace LemonadeStand
 {
     class Player
     {
-        string name;
+        public string name;
+        public int drinksAvailable;
         // member variables (HAS A)
         public Inventory inventory;
         public Wallet wallet;
@@ -27,23 +28,26 @@ namespace LemonadeStand
 
         public void DisplayInvetory()
         {
-            Console.WriteLine($"You have {wallet.Money}");
-            Console.WriteLine($"You have {inventory.lemons.Count}");
-            Console.WriteLine($"You have {inventory.sugarCubes.Count}");
-            Console.WriteLine($"You have {inventory.iceCubes.Count}");
-            Console.WriteLine($"You have {inventory.cups.Count}");
+            Console.WriteLine($"\nYou have ${wallet.Money}");
+            Console.WriteLine($"You have {inventory.lemons.Count} lemons");
+            Console.WriteLine($"You have {inventory.sugarCubes.Count} sugar cubes");
+            Console.WriteLine($"You have {inventory.iceCubes.Count} ice cubes");
+            Console.WriteLine($"You have {inventory.cups.Count} cups\n");
         }
 
-        public void ChangeRecipe()
+        public void InventoryAfterMakingPitcher(int amountOfPitchers)
         {
-            Console.WriteLine("Enter number of Lemons:");
-            recipe.numberOfLemons = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter number of Sugar Cubes:");
-            recipe.numberOfSugarCubes = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter number of Ice Cubes:");
-            recipe.numberOfIceCubes = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter a price:");
-            recipe.price = Convert.ToInt32(Console.ReadLine());
+            // 1 pitcher = 8 cups.
+            int cups = 8 * amountOfPitchers;
+
+            int lemonsForPitcher = recipe.numberOfLemons * 8;
+            int sugarForPitcher = recipe.numberOfSugarCubes * 8;
+            int iceForPitcher = recipe.numberOfIceCubes * 8;
+
+            inventory.lemons.RemoveRange(inventory.lemons.Count -1, lemonsForPitcher);
+            inventory.sugarCubes.RemoveRange(inventory.sugarCubes.Count -1, sugarForPitcher);
+            inventory.iceCubes.RemoveRange(inventory.sugarCubes.Count - 1, iceForPitcher);  
         }
+  
     }
 }

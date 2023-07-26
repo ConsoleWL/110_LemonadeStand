@@ -24,6 +24,9 @@ namespace LemonadeStand
         }
 
         // member methods (CAN DO)
+
+        // add mathod to call all of these methods at once
+
         public void SellLemons(Player player)
         {
             int lemonsToPurchase = UserInterface.GetNumberOfItems("lemons");

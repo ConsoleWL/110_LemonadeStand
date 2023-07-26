@@ -18,9 +18,10 @@ namespace LemonadeStand
 
         public Weather()
         {
-            weatherConditions.Add("Hot. Sunny. Clear Sky");
-            weatherConditions.Add("Warm. Sunny. Cloudy");
-            weatherConditions.Add("Cold. No sun. Cloudy");
+            weatherConditions = new List<string>();
+            weatherConditions.Add("Hot. Sunny. Clear Sky.");
+            weatherConditions.Add("Warm. Sunny. Cloudy.");
+            weatherConditions.Add("Cold. No sun. Cloudy.");
             GetTemperature();
         }
 
@@ -56,6 +57,11 @@ namespace LemonadeStand
                 default:
                     break;
             }
+        }
+
+        public void DisplayTemperature()
+        {
+            Console.WriteLine($"\nToday's forecast: {predictedForecast} Temperature:{temperature}F");
         }
     }
 }
