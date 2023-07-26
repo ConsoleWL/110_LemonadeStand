@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    internal class Customer
+    public class Customer
     {
+        string name;
+        public Customer()
+        {
+            name = "customer";
+        }
+
+        // method to buy a lemonade depends on wheather and price
+        public bool Purchase()
+        {
+            return true;
+        }
+
     }
 }

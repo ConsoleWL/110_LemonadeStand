@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     internal class Recipe
     {
+        public string name;
         // member variables (HAS A)
         public int numberOfLemons;
         public int numberOfSugarCubes;
@@ -18,6 +19,7 @@ namespace LemonadeStand
         // constructor (SPAWNER)
         public Recipe()
         {
+            name = "Regular Lemonade";
             numberOfLemons = 2;
             numberOfSugarCubes = 4;
             numberOfIceCubes = 10;
