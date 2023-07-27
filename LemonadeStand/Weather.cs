@@ -8,7 +8,7 @@ namespace LemonadeStand
 {
     public class Weather
     {
-        string condition;
+        public string condition;
         int temperature;
         List<string> weatherConditions;
         string predictedForecast;
@@ -37,7 +37,6 @@ namespace LemonadeStand
                     predictedForecast = weatherConditions[2];
                     condition = "bad";
                     break;
-                
                 case 3:
                 case 4:
                 case 5:

@@ -20,16 +20,18 @@ namespace LemonadeStand
         public Recipe()
         {
             name = "Regular Lemonade";
-            numberOfLemons = 1;
-            numberOfSugarCubes = 2;
-            numberOfIceCubes = 3;
+            numberOfLemons = 2;
+            numberOfSugarCubes = 5;
+            numberOfIceCubes = 10;
             price = 1;
         }
 
         //Member Methods (CAN DO)
         public void DisplayRecipe()
         {
-            Console.WriteLine($"\nYour recipe {name} price ${price} and consists of:\n{numberOfLemons} lemons per pitcher\n{numberOfSugarCubes} sugar cubes per pitcher\n{numberOfIceCubes} ice cubes per pitcher");
+            Console.WriteLine($"\nYour recipe {name} price ${price} and consists " +
+                $"of:\n{numberOfLemons} lemons per pitcher\n{numberOfSugarCubes} " +
+                $"sugar cubes per pitcher\n{numberOfIceCubes} ice cubes per pitcher");
         }
 
         public void ChangeRecipe()

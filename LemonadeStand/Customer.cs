@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Customer
+    class Customer
     {
         string name;
         public Customer()
@@ -14,10 +14,11 @@ namespace LemonadeStand
             name = "customer";
         }
 
-        // method to buy a lemonade depends on wheather and price
-        public bool Purchase()
+        // method to purchase a drink
+        public void Purchase(Player player, Recipe recipe)
         {
-            return true;
+            player.inventory.cups.RemoveAt(0);
+            player.wallet.AcceptMoney(recipe.price);
         }
 
     }

@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public string name;
         public int drinksAvailable;
+        public int drinksSold = 0;
         // member variables (HAS A)
         public Inventory inventory;
         public Wallet wallet;
@@ -35,14 +36,14 @@ namespace LemonadeStand
             Console.WriteLine($"You have {inventory.cups.Count} cups\n");
         }
 
-        public void InventoryAfterMakingPitcher(int amountOfPitchers)
+        public void MakeAPitcher(int amountOfPitchers)
         {
             // 1 pitcher = 8 cups.
-            int cups = 8 * amountOfPitchers;
+            drinksAvailable = 8 * amountOfPitchers;
 
-            int lemonsForPitcher = recipe.numberOfLemons * 8;
-            int sugarForPitcher = recipe.numberOfSugarCubes * 8;
-            int iceForPitcher = recipe.numberOfIceCubes * 8;
+            int lemonsForPitcher = recipe.numberOfLemons * amountOfPitchers;
+            int sugarForPitcher = recipe.numberOfSugarCubes * amountOfPitchers;
+            int iceForPitcher = recipe.numberOfIceCubes * amountOfPitchers;
 
             inventory.lemons.RemoveRange(0, lemonsForPitcher);
             inventory.sugarCubes.RemoveRange(0, sugarForPitcher);

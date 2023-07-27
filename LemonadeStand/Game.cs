@@ -36,43 +36,108 @@ namespace LemonadeStand
 
         public void Welcome()
         {
-
+            Console.WriteLine("Welcome to Lemonade Stand!");
+            Console.WriteLine("You have 7 days to make as much money as you can.");
+            Console.WriteLine("The weather, along with your pricing, can affect your success.");
+            Console.WriteLine("Can you make the big bucks");
         }
 
-        public void DaylyProfitLoss()
+        public void DisplayProfitLoss()
         {
-
+            Console.WriteLine($"\nDay {currentDay} is over! You sold {player.drinksSold} cups, which brought in ${player.drinksSold * player.recipe.price}");
         }
 
         public void GenerateCustomers()
         {
-            //
+
+            switch (days[currentDay - 1].weather.condition)
+            {
+                case "perfect":
+                    for (int i = 0; i < 100; i++)
+                    {
+                        customers.Add(new Customer());
+                    }
+                    break;
+                case "good":
+                    for (int i = 0; i < 60; i++)
+                    {
+                        customers.Add(new Customer());
+                    }
+                    break;
+                case "bad":
+                    for (int i = 0; i < 30; i++)
+                    {
+                        customers.Add(new Customer());
+                    }
+                    break;
+            }
+        }
+
+        public void CustomersPurchase()
+        {
+            
+            for (int i = 0; i < customers.Count; i++)
+            {
+
+                if (player.drinksAvailable > 0)
+                {
+                    if (player.inventory.cups.Count > 0)
+                    {
+                        int random = rnd.Next(1, 6);
+
+                        if (random == 1 || random == 2 || random == 3)
+                        {
+                            Console.WriteLine("A customer walks by...");
+                        }
+                        else
+                        {
+                            customers[i].Purchase(player, player.recipe);
+                            Console.WriteLine($"A customer buys a cup of {player.recipe.name}");
+                            player.drinksSold++;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not enough cups...Run out of cups!!!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Sold out!");
+                }
+            }
         }
         
         public void GameSimulation()
         {
-            Console.WriteLine($"\nDay {currentDay} begins!");
+            while (currentDay < 8)
+            {
+                Console.WriteLine($"\nDay {currentDay} begins!");
 
-            player.DisplayInvetory();
+                player.DisplayInvetory();
 
-            store.SellLemons(player);
-            store.SellSugarCubes(player);
-            store.SellIceCubes(player);
-            store.SellCups(player);
+                store.SellLemons(player);
+                store.SellSugarCubes(player);
+                store.SellIceCubes(player);
+                store.SellCups(player);
 
-            player.recipe.DisplayRecipe();
-            player.recipe.ChangeRecipe();
+                player.recipe.DisplayRecipe();
+                player.recipe.ChangeRecipe();
 
-            days[currentDay].weather.DisplayTemperature();
+                days[currentDay].weather.DisplayTemperature();
 
-            int amountOfPitchers = UserInterface.GetNumberOfPitchers();
+                int amountOfPitchers = UserInterface.GetNumberOfPitchers();
 
-            player.InventoryAfterMakingPitcher(amountOfPitchers);
+                player.MakeAPitcher(amountOfPitchers);
 
-            int drinksToBuyAvailable = amountOfPitchers * 8;
+                GenerateCustomers();
 
+                CustomersPurchase();
 
-          
+                DisplayProfitLoss();
+
+                currentDay++;
+            }
         }
 
         public void GameRuslts()
@@ -83,6 +148,8 @@ namespace LemonadeStand
         public void RunGame()
         {
             GameSimulation();
+            Welcome();
+            GameRuslts();
         }
 
     }
