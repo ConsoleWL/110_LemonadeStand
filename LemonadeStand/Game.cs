@@ -16,7 +16,6 @@ namespace LemonadeStand
         Store store;
         List<Day> days;
         List<Customer> customers;
-        
 
         public Game()
         {
@@ -24,15 +23,16 @@ namespace LemonadeStand
             player = new Player();
             store = new Store();
             customers = new List<Customer>();
-            
-            days = new List<Day>();
-            days.Add(new Day());
-            days.Add(new Day());
-            days.Add(new Day());
-            days.Add(new Day());
-            days.Add(new Day());
-            days.Add(new Day());
-            days.Add(new Day());
+
+            days = new List<Day>
+            {
+                new Day(),
+                new Day(),
+                new Day(),
+                new Day(),
+                new Day(),
+                new Day()
+            };
         }
 
         public void Welcome()
@@ -43,13 +43,31 @@ namespace LemonadeStand
             Console.WriteLine("Can you make the big bucks");
         }
 
-        public void DisplayProfitLoss()
+        public void WhetherRandonizer()
         {
-            Console.WriteLine($"\nDay {currentDay} is over! You sold {player.drinksSold} cups, which brought in ${player.drinksSold * player.recipe.price}");
+            int changeWeather = rnd.Next(1, 7);
+            if (changeWeather == 1)
+            {
+                //then well change it
+                if (days[currentDay].weather.condition == "perfect")
+                {
+                    days[currentDay].weather.condition = "bad";
+                }
+                else if (days[currentDay].weather.condition == "bad")
+                {
+                    days[currentDay].weather.condition = "perfect";
+
+                }
+                else
+                {
+                    days[currentDay].weather.condition = "perfect";
+                }
+            }
         }
 
         public void GenerateCustomers()
         {
+            WhetherRandonizer();
 
             switch (days[currentDay - 1].weather.condition)
             {
@@ -76,35 +94,29 @@ namespace LemonadeStand
 
         public void CustomersPurchase()
         {
-            
             for (int i = 0; i < customers.Count; i++)
             {
-
                 if (player.drinksAvailable > 0)
                 {
-                    if (player.inventory.cups.Count > 0)
+                    int random = rnd.Next(1, 6);
+
+                    if (random == 1 || random == 2 || random == 3)
                     {
-                        int random = rnd.Next(1, 6);
-
-                        if (random == 1 || random == 2 || random == 3)
-                        {
-                            Console.WriteLine("A customer walks by...");
-                        }
-                        else
-                        {
-                            customers[i].Purchase(player, player.recipe);
-                            Console.WriteLine($"A customer buys a cup of {player.recipe.name}");
-
-                            player.drinksAvailable--;
-                            player.drinksSold++;
-
-                            player.wallet.totalProfit += player.recipe.price;
-                        }
+                        Console.WriteLine("A customer walks by...");
                     }
                     else
                     {
-                        Console.WriteLine("Not enough cups...Run out of cups!!!");
+                        customers[i].Purchase(player, player.recipe);
+                        Console.WriteLine($"A customer buys a cup of {player.recipe.name}");
+
+                        player.drinksAvailable--;
+                        player.drinksSold++;
+
+                        player.wallet.totalProfit += player.recipe.price;
                     }
+                    //{
+                    //    Console.WriteLine("Not enough cups...Run out of cups!!!");
+                    //}
                 }
                 else
                 {
@@ -112,7 +124,12 @@ namespace LemonadeStand
                 }
             }
         }
-        
+
+        public void DisplayProfitLoss()
+        {
+            Console.WriteLine($"\nDay {currentDay} is over! You sold {player.drinksSold} cups, which brought in ${player.drinksSold * player.recipe.price}");
+        }
+
         public void GameSimulation()
         {
             while (currentDay < 8)
@@ -120,11 +137,8 @@ namespace LemonadeStand
                 Console.WriteLine($"\nDay {currentDay} begins!");
 
                 player.DisplayInvetory();
-
-                store.SellLemons(player);
-                store.SellSugarCubes(player);
-                store.SellIceCubes(player);
-                store.SellCups(player);
+                store.SellItems(player);
+                player.DisplayInvetory();
 
                 player.recipe.DisplayRecipe();
                 player.recipe.ChangeRecipe();
@@ -143,7 +157,6 @@ namespace LemonadeStand
                 tempor = 0;
                 player.drinksAvailable = 0;
                 currentDay++;
-                
             }
         }
 
@@ -154,10 +167,9 @@ namespace LemonadeStand
 
         public void RunGame()
         {
-            GameSimulation();
             Welcome();
+            GameSimulation();
             GameResuts();
         }
-
     }
 }

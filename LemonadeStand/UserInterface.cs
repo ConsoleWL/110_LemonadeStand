@@ -39,6 +39,5 @@ namespace LemonadeStand
 
             return quantityOfItem;
         }
-
     }
 }

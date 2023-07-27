@@ -8,10 +8,10 @@ namespace LemonadeStand
 {
     class Player
     {
+        // member variables (HAS A)
         public string name;
         public int drinksAvailable;
         public int drinksSold = 0;
-        // member variables (HAS A)
         public Inventory inventory;
         public Wallet wallet;
         public Recipe recipe;
@@ -26,7 +26,6 @@ namespace LemonadeStand
         }
 
         // member methods (CAN DO)
-
         public void DisplayInvetory()
         {
             Console.WriteLine($"\nYou have ${wallet.Money}");

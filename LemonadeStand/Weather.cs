@@ -8,25 +8,27 @@ namespace LemonadeStand
 {
     public class Weather
     {
+        Random rnd = new Random();
+        int number;
+
         public string condition;
         int temperature;
         List<string> weatherConditions;
         string predictedForecast;
 
-        Random rnd = new Random();
-        int number;
-
         public Weather()
         {
-            weatherConditions = new List<string>();
-            weatherConditions.Add("Hot. Sunny. Clear Sky.");
-            weatherConditions.Add("Warm. Sunny. Cloudy.");
-            weatherConditions.Add("Cold. No sun. Cloudy.");
-            GetTemperature();
+            weatherConditions = new List<string>
+            {
+                "Hot. Sunny. Clear Sky",
+                "Warm. Sunny. Cloudy",
+                "Cold. No sun. Cloudy"
+            };
+            GenerateTemperature();
         }
 
         //determine teperature
-        public void GetTemperature()
+        public void GenerateTemperature()
         {
             number = rnd.Next(1, 11);
             switch (number)
@@ -52,8 +54,6 @@ namespace LemonadeStand
                     temperature = 80;
                     predictedForecast = weatherConditions[0];
                     condition = "perfect";
-                    break;
-                default:
                     break;
             }
         }

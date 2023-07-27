@@ -8,13 +8,12 @@ namespace LemonadeStand
 {
     internal class Recipe
     {
-        public string name;
         // member variables (HAS A)
         public int numberOfLemons;
         public int numberOfSugarCubes;
         public int numberOfIceCubes;
         public double price;
-
+        public string name;
 
         // constructor (SPAWNER)
         public Recipe()
@@ -61,9 +60,7 @@ namespace LemonadeStand
             else
             {
                 Console.WriteLine("Invalid input");
-            }
-            
+            } 
         }
-
     }
 }
