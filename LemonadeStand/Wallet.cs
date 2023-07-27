@@ -10,6 +10,8 @@ namespace LemonadeStand
     {
         // member variables (HAS A)
         private double money;
+        public double totalProfit;
+
         public double Money
         {
             get

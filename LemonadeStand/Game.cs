@@ -94,6 +94,8 @@ namespace LemonadeStand
                             customers[i].Purchase(player, player.recipe);
                             Console.WriteLine($"A customer buys a cup of {player.recipe.name}");
                             player.drinksSold++;
+
+                            player.wallet.totalProfit += player.recipe.price;
                         }
                     }
                     else
@@ -136,20 +138,22 @@ namespace LemonadeStand
 
                 DisplayProfitLoss();
 
+                player.drinksAvailable = 0;
                 currentDay++;
+                
             }
         }
 
-        public void GameRuslts()
+        public void GameRusuts()
         {
-
+            Console.WriteLine($"\nThe week is over. Your total profit is {player.wallet.totalProfit}");
         }
 
         public void RunGame()
         {
             GameSimulation();
             Welcome();
-            GameRuslts();
+            GameRusuts();
         }
 
     }
