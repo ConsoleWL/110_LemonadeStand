@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace LemonadeStand
 {
@@ -93,6 +94,8 @@ namespace LemonadeStand
                         {
                             customers[i].Purchase(player, player.recipe);
                             Console.WriteLine($"A customer buys a cup of {player.recipe.name}");
+
+                            player.drinksAvailable--;
                             player.drinksSold++;
 
                             player.wallet.totalProfit += player.recipe.price;
@@ -131,20 +134,20 @@ namespace LemonadeStand
                 int amountOfPitchers = UserInterface.GetNumberOfPitchers();
 
                 player.MakeAPitcher(amountOfPitchers);
-
+                int tempor = 1;
                 GenerateCustomers();
 
                 CustomersPurchase();
 
                 DisplayProfitLoss();
-
+                tempor = 0;
                 player.drinksAvailable = 0;
                 currentDay++;
                 
             }
         }
 
-        public void GameRusuts()
+        public void GameResuts()
         {
             Console.WriteLine($"\nThe week is over. Your total profit is {player.wallet.totalProfit}");
         }
@@ -153,7 +156,7 @@ namespace LemonadeStand
         {
             GameSimulation();
             Welcome();
-            GameRusuts();
+            GameResuts();
         }
 
     }

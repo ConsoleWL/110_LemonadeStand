@@ -23,7 +23,7 @@ namespace LemonadeStand
             numberOfLemons = 2;
             numberOfSugarCubes = 5;
             numberOfIceCubes = 10;
-            price = 1;
+            price = 2;
         }
 
         //Member Methods (CAN DO)
